@@ -98,6 +98,7 @@ for (let i = 0; i < lis.length; i += 1) {
 }
 
 listUl.addEventListener('click', (event) => {
+
   if (event.target.tagName == 'BUTTON') {
     if (event.target.className == 'remove') {
       let li = event.target.parentNode;
@@ -107,11 +108,13 @@ listUl.addEventListener('click', (event) => {
 
       // first li remove button was hit
       if (prevLi === null) {
+        nextLi.style.backgroundColor = 'lightskyblue';
         removeButtonFromListItem(nextLi, 'up');
       }
 
       // if el to remove is first el
       if (li === ul.lastElementChild) {
+        prevLi.style.backgroundColor = 'lightsteelblue';
         removeButtonFromListItem(prevLi, 'down');
       }
 
@@ -123,17 +126,19 @@ listUl.addEventListener('click', (event) => {
       let prevLi = li.previousElementSibling;
       let ul = li.parentNode;
       if (prevLi) {
-        li.style.backgroundColor = '';
-        prevLi.style.backgroundColor = 'lightsteelblue';
         ul.insertBefore(li, prevLi);
       }
       if (li === listUl.firstElementChild) {
+        li.style.backgroundColor = 'lightskyblue';
+        prevLi.style.backgroundColor = '';
         removeButtonFromListItem(li, 'up');
         // prevLi is no longer firstElement
         //  so add up button
         addButtonToListItem(prevLi, 'up');
       // now li is up prevLi is last Element
       } else if (prevLi === listUl.lastElementChild) {
+        li.style.backgroundColor = '';
+        prevLi.style.backgroundColor = 'lightsteelblue';
         removeButtonFromListItem(prevLi, 'down');
         addButtonToListItem(li, 'down');
       }
