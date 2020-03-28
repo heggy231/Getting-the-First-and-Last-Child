@@ -10,16 +10,8 @@ const lis = listUl.children;
 const firstListItem = listUl.firstElementChild;
 const lastListItem = listUl.lastElementChild;
 
-// firstListItem.style.backgroundColor = 'lightskyblue';
-// lastListItem.style.backgroundColor = 'lightsteelblue';
-
 function attachListItemButtons(li) {
-  // debugger;
-  // initialize variables
-  // let listDiv = document.querySelector('.list');
-  // let listUl = listDiv.querySelector('ul');
-  // let firstListItem = listUl.firstElementChild;
-  // let lastListItem = listUl.lastElementChild;
+
   if (li === firstListItem) {
     firstListItem.style.backgroundColor = 'lightskyblue';
   }
