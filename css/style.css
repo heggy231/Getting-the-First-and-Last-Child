@@ -62,9 +62,15 @@ button + button {
 p + button {
   background: #52bab3;
 }
+
 .list button + button {
   background: #768da3;
 }
+/* 
+  + adjacent sibling combinator 
+  `up`, `down`
+  so we are picking `down`
+*/
 .list li button + button {
   background: #508abc;
 }

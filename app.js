@@ -7,22 +7,31 @@ const listUl = listDiv.querySelector('ul');
 const addItemInput = document.querySelector('input.addItemInput');
 const addItemButton = document.querySelector('button.addItemButton');
 const lis = listUl.children;
-const firstListItem = listUl.firstElementChild;
-const lastListItem = listUl.lastElementChild;
+// const firstListItem = listUl.firstElementChild;
+// const lastListItem = listUl.lastElementChild;
 
-firstListItem.style.backgroundColor = 'lightskyblue';
-lastListItem.style.backgroundColor = 'lightsteelblue';
+// firstListItem.style.backgroundColor = 'lightskyblue';
+// lastListItem.style.backgroundColor = 'lightsteelblue';
 
 function attachListItemButtons(li) {
   let listDiv = document.querySelector('.list');
   let listUl = listDiv.querySelector('ul');
   let firstListItem = listUl.firstElementChild;
   let lastListItem = listUl.lastElementChild;
+  if (li === firstListItem) {
+    firstListItem.style.backgroundColor = 'lightskyblue';
+  }
+
+  if (li === lastListItem) {
+    lastListItem.style.backgroundColor = 'lightsteelblue';
+  }
   // only add `up` when li is NOT firstListItem
   if (li !== firstListItem) {
     let up = document.createElement('button');
     up.className = 'up';
     up.textContent = 'Up';
+    // attaching color assignment for button
+    up.style.background = '#52bab3';
     li.appendChild(up);
   }
 
@@ -31,12 +40,16 @@ function attachListItemButtons(li) {
     let down = document.createElement('button');
     down.className = 'down';
     down.textContent = 'Down';
+    // attaching dynamic color assignment for button
+    down.style.background = '#508abc';
     li.appendChild(down);  
   }
 
   let remove = document.createElement('button');
   remove.className = 'remove';
   remove.textContent = 'Remove';
+  // attaching dynamic color assignment for button
+  remove.style.background = '#768da3';
   li.appendChild(remove);
 }
 
@@ -63,8 +76,10 @@ function addButtonToListItem(li, buttonType) {
 
   button.className = buttonType;
   if (buttonType === 'up') {
+    button.style.background = '#52bab3';
     button.textContent = 'Up';
   } else {
+    button.style.background = '#508abc';
     button.textContent = 'Down';
   }
 
@@ -103,10 +118,13 @@ listUl.addEventListener('click', (event) => {
       ul.removeChild(li);
     }
     if (event.target.className == 'up') {
+      // debugger;
       let li = event.target.parentNode;
       let prevLi = li.previousElementSibling;
       let ul = li.parentNode;
       if (prevLi) {
+        li.style.backgroundColor = '';
+        prevLi.style.backgroundColor = 'lightsteelblue';
         ul.insertBefore(li, prevLi);
       }
       if (li === listUl.firstElementChild) {
