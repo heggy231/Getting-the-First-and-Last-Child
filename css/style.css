@@ -28,6 +28,7 @@ li {
   display: flex;
   align-items: center;
 }
+
 input,
 button {
   font-size: .85em;

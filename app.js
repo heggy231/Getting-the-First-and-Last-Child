@@ -7,17 +7,19 @@ const listUl = listDiv.querySelector('ul');
 const addItemInput = document.querySelector('input.addItemInput');
 const addItemButton = document.querySelector('button.addItemButton');
 const lis = listUl.children;
-// const firstListItem = listUl.firstElementChild;
-// const lastListItem = listUl.lastElementChild;
+const firstListItem = listUl.firstElementChild;
+const lastListItem = listUl.lastElementChild;
 
 // firstListItem.style.backgroundColor = 'lightskyblue';
 // lastListItem.style.backgroundColor = 'lightsteelblue';
 
 function attachListItemButtons(li) {
-  let listDiv = document.querySelector('.list');
-  let listUl = listDiv.querySelector('ul');
-  let firstListItem = listUl.firstElementChild;
-  let lastListItem = listUl.lastElementChild;
+  // debugger;
+  // initialize variables
+  // let listDiv = document.querySelector('.list');
+  // let listUl = listDiv.querySelector('ul');
+  // let firstListItem = listUl.firstElementChild;
+  // let lastListItem = listUl.lastElementChild;
   if (li === firstListItem) {
     firstListItem.style.backgroundColor = 'lightskyblue';
   }
@@ -57,6 +59,7 @@ function attachListItemButtons(li) {
 
 // buttonType is className .down .up .remove
 function removeButtonFromListItem(li, buttonType) {
+  // debugger;
   // collection of up/down/remove buttons
   const liChildren = li.children;
 
@@ -106,14 +109,18 @@ listUl.addEventListener('click', (event) => {
       let nextLi = li.nextElementSibling;
       let ul = li.parentNode;
 
-      // first li remove button was hit
-      if (prevLi === null) {
-        nextLi.style.backgroundColor = 'lightskyblue';
-        removeButtonFromListItem(nextLi, 'up');
-      }
+      // check for li is only one => do nothing
+      if (prevLi === null && li === ul.lastElementChild) {
 
+      // first li remove button was hit
+      } else if (prevLi === null) {
+        if (nextLi){
+          nextLi.style.backgroundColor = 'lightskyblue';
+        }
+
+        removeButtonFromListItem(nextLi, 'up');
       // if el to remove is first el
-      if (li === ul.lastElementChild) {
+      } else if (li === ul.lastElementChild) {
         prevLi.style.backgroundColor = 'lightsteelblue';
         removeButtonFromListItem(prevLi, 'down');
       }
@@ -144,6 +151,7 @@ listUl.addEventListener('click', (event) => {
       }
     }  
     if (event.target.className == 'down') {
+      // debugger;
       let li = event.target.parentNode;
       let nextLi = li.nextElementSibling;
       let ul = li.parentNode;
@@ -155,6 +163,8 @@ listUl.addEventListener('click', (event) => {
       }
       // now li becomes last li
       if (li === listUl.lastElementChild) {
+        nextLi.style.backgroundColor = '';
+        li.style.backgroundColor = 'lightsteelblue';
         // remove down button
         removeButtonFromListItem(li, 'down');
         addButtonToListItem(nextLi, 'down');
@@ -162,6 +172,8 @@ listUl.addEventListener('click', (event) => {
       // now nextLi is first li, 
       // when press 'down' -> 'up' button gone
       if (nextLi === listUl.firstElementChild) {
+        nextLi.style.backgroundColor = 'lightskyblue';
+        li.style.backgroundColor = '';
         removeButtonFromListItem (nextLi, 'up');
         addButtonToListItem(li, 'up');
       }
@@ -185,14 +197,17 @@ descriptionButton.addEventListener('click', () => {
 });
 
 addItemButton.addEventListener('click', () => {
-  // ;
+  // debugger;
   let ul = document.getElementsByTagName('ul')[0];
   let li = document.createElement('li');
   li.textContent = addItemInput.value;
+  li.style.backgroundColor = 'lightsteelblue';
+
   ul.appendChild(li);
   attachListItemButtons(li);
   addItemInput.value = '';
   // grab set of div, ul with new li
   let prevLi = li.previousElementSibling;
+  prevLi.style.backgroundColor = '';
   addButtonToListItem(prevLi, 'down');
 });
