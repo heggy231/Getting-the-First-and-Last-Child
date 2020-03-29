@@ -7,11 +7,15 @@ const listUl = listDiv.querySelector('ul');
 const addItemInput = document.querySelector('input.addItemInput');
 const addItemButton = document.querySelector('button.addItemButton');
 const lis = listUl.children;
-const firstListItem = listUl.firstElementChild;
-const lastListItem = listUl.lastElementChild;
+// const firstListItem = listUl.firstElementChild;
+// const lastListItem = listUl.lastElementChild;
 
 function attachListItemButtons(li) {
-
+// debugger;
+  let listDiv = document.querySelector('.list');
+  let listUl = listDiv.querySelector('ul');
+  let firstListItem = listUl.firstElementChild;
+  let lastListItem = listUl.lastElementChild;
   if (li === firstListItem) {
     firstListItem.style.backgroundColor = 'lightskyblue';
   }
@@ -65,6 +69,7 @@ function removeButtonFromListItem(li, buttonType) {
 }
 
 function addButtonToListItem(li, buttonType) {
+  // debugger;
   let button = document.createElement('button');
   // collection of up/down/remove buttons
   const liChildren = li.children;
@@ -192,6 +197,7 @@ addItemButton.addEventListener('click', () => {
   // debugger;
   let ul = document.getElementsByTagName('ul')[0];
   let li = document.createElement('li');
+  let lastListItem = listUl.lastElementChild;
   li.textContent = addItemInput.value;
   li.style.backgroundColor = 'lightsteelblue';
 
